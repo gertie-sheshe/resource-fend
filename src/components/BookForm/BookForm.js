@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
+
 import { useMutation, useQueryClient } from "react-query";
 import { createBook } from "../../utils/api";
 
@@ -21,6 +23,7 @@ function BookForm({ userId }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newBook = {
       title: book,
       completed: false,
@@ -45,11 +48,12 @@ function BookForm({ userId }) {
           id="book"
           type="text"
           value={book}
+          required
           onChange={handleOnChange}
         />
-        <button disabled={!userId} style={{ marginLeft: "5px" }} type="submit">
+        <Button disabled={!userId} style={{ marginLeft: "5px" }} type="submit">
           Add
-        </button>
+        </Button>
       </form>
       {addBookMutation.error && <p>Error: {addBookMutation.error}</p>}
       {addBookMutation.isLoading && <p>Adding Todo...</p>}
