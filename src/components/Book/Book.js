@@ -6,6 +6,12 @@ import {
   ListItemText,
   Checkbox,
   IconButton,
+  Dialog,
+  Button,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useMutation, useQueryClient } from "react-query";
@@ -14,6 +20,7 @@ import { updateBook } from "../../utils/api";
 function Book({ book }) {
   const [isChecked, setIsChecked] = useState(book.returned);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [open, setOpen] = useState(false);
   const isInitialMount = useRef(true);
   const queryClient = useQueryClient();
 
@@ -29,6 +36,10 @@ function Book({ book }) {
       },
     }
   );
+
+  const handleModalOpen = () => {
+    setOpen(!open);
+  };
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -47,7 +58,11 @@ function Book({ book }) {
   return (
     <ListItem
       secondaryAction={
-        <IconButton edge="end" aria-label="comments">
+        <IconButton
+          onClick={handleModalOpen}
+          edge="end"
+          aria-label="delete book"
+        >
           <Delete />
         </IconButton>
       }
@@ -58,18 +73,19 @@ function Book({ book }) {
         </ListItemIcon>
         <ListItemText id={book.id} primary={book.title} />
       </ListItemButton>
+      <Dialog open={open} onClose={handleModalOpen}>
+        <DialogTitle>Delete Book</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {`Are you sure you want to delete ${book.title}?`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleModalOpen}>Cancel</Button>
+          <Button onClick={handleModalOpen}>Delete</Button>
+        </DialogActions>
+      </Dialog>
     </ListItem>
-
-    // <li key={book.id}>
-    //   <input
-    //     disabled={isDisabled}
-    //     onChange={handleOnChange}
-    //     id={book.id}
-    //     type="checkbox"
-    //     checked={isChecked}
-    //   />
-    //   <label htmlFor={book.id}>{book.title}</label>
-    // </li>
   );
 }
 

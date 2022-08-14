@@ -37,7 +37,7 @@
       "userId": 2,
       "id": 2,
       "title": "quis ut nam facilis et officia qui",
-      "returned": false
+      "returned": true
     },
     {
       "userId": 3,
@@ -62,7 +62,7 @@
       "userId": 2,
       "id": 6,
       "title": "qui ullam ratione quibusdam voluptatem quia omnis",
-      "returned": false
+      "returned": true
     },
     {
       "userId": 3,
