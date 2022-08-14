@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import { ReactQueryDevtools } from "react-query/devtools";
+import theme from "./theme";
 
 import "./index.css";
 import App from "./components/App/App";
@@ -18,7 +20,10 @@ const queryClient = new QueryClient({
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
 );

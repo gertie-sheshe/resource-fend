@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import { FormControl, InputLabel, MenuItem, Select, Grid } from "@mui/material";
 import { getUsers } from "../../utils/api";
 
 function Users({ handleSelectChange }) {
@@ -13,19 +14,25 @@ function Users({ handleSelectChange }) {
     return <p>Loading...</p>;
   }
   return (
-    <>
-      <label htmlFor="users">Choose User: </label>
-      <select onChange={handleSelectChange} name="users" id="users">
-        <option defaultValue>Select User</option>
-        {data?.map((user) => {
-          return (
-            <option value={user.id} key={user.id}>
+    <Grid>
+      <FormControl fullWidth>
+        <InputLabel id="user-select">Age</InputLabel>
+        <Select
+          sx={{ width: "500px" }}
+          labelId="user-select"
+          id="demo-simple-select"
+          defaultValue=""
+          label="Age"
+          onChange={handleSelectChange}
+        >
+          {data.map((user) => (
+            <MenuItem key={user.id} value={user.id}>
               {user.name}
-            </option>
-          );
-        })}
-      </select>
-    </>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Grid>
   );
 }
 

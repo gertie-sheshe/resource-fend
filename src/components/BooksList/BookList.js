@@ -1,5 +1,6 @@
 import React from "react";
 import Book from "../Book";
+import { List } from "@mui/material";
 
 function BookList({ error, isLoading, data }) {
   if (error) {
@@ -12,11 +13,11 @@ function BookList({ error, isLoading, data }) {
 
   return (
     <form>
-      <ul style={{ listStyleType: "none" }}>
+      <List sx={{ listStyleType: "none" }}>
         {data?.map((book) => (
           <Book key={book.id} book={book} />
         ))}
-      </ul>
+      </List>
       {data?.length === 0 && <p>No books found</p>}
     </form>
   );

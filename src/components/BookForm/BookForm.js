@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import Button from "@mui/material/Button";
+import {
+  TextField,
+  FormControl,
+  OutlinedInput,
+  InputLabel,
+  Button,
+} from "@mui/material";
 
 import { useMutation, useQueryClient } from "react-query";
 import { createBook } from "../../utils/api";
@@ -40,17 +46,17 @@ function BookForm({ userId }) {
   return (
     <div style={{ marginTop: "20px" }}>
       <form onSubmit={handleSubmit}>
-        <label style={{ marginRight: "10px" }} htmlFor="book">
-          Add Book:
-        </label>
-        <input
-          disabled={!userId}
-          id="book"
-          type="text"
-          value={book}
-          required
-          onChange={handleOnChange}
-        />
+        <FormControl>
+          <InputLabel htmlFor="book-input">Add a book</InputLabel>
+          <OutlinedInput
+            disabled={!userId}
+            id="book"
+            type="text"
+            value={book}
+            required
+            onChange={handleOnChange}
+          />
+        </FormControl>
         <Button disabled={!userId} style={{ marginLeft: "5px" }} type="submit">
           Add
         </Button>
