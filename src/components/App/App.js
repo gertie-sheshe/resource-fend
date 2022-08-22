@@ -56,7 +56,7 @@ function App() {
             }}
           >
             <Button variant="contained" onClick={handleModalOpen}>
-              Add User
+              Add Friend
             </Button>
           </Grid>
           <Grid
@@ -68,7 +68,7 @@ function App() {
             }}
           >
             <Typography sx={{ padding: "20px 0" }} variant="h1">
-              Library App
+              Gertrude's Home Library App
             </Typography>
             <ContentContainer>
               <Users handleSelectChange={handleSelectChange} />

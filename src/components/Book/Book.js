@@ -19,7 +19,7 @@ function Book({ book }) {
   const isInitialMount = useRef(true);
   const queryClient = useQueryClient();
 
-  const updateTodoMutation = useMutation(
+  const updateBookMutation = useMutation(
     (options) => {
       const { data, id } = options;
       updateBook(data, id);
@@ -40,8 +40,8 @@ function Book({ book }) {
     if (isInitialMount.current) {
       isInitialMount.current = false;
     } else {
-      const updatedTodo = { ...book, returned: isChecked };
-      updateTodoMutation.mutate({ data: updatedTodo, id: book.id });
+      const updatedBook = { ...book, returned: isChecked };
+      updateBookMutation.mutate({ data: updatedBook, id: book.id });
     }
   }, [isChecked]);
 
@@ -67,6 +67,7 @@ function Book({ book }) {
           <Checkbox
             sx={{ "&.Mui-checked": { color: "palette.primary.main" } }}
             checked={isChecked}
+            inputProps={{ "aria-label": `${book.title}` }}
           />
         </ListItemIcon>
         <ListItemText id={book.id} primary={book.title} />

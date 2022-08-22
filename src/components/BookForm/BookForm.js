@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import {
-  TextField,
+  Grid,
   FormControl,
   OutlinedInput,
   InputLabel,
   Button,
 } from "@mui/material";
+import { styled } from "@mui/system";
 
 import { useMutation, useQueryClient } from "react-query";
 import { createBook } from "../../utils/api";
+
+const Form = styled("form")({
+  display: "flex",
+});
 
 function BookForm({ userId }) {
   const [book, setBook] = useState("");
@@ -44,13 +49,13 @@ function BookForm({ userId }) {
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
-      <form onSubmit={handleSubmit}>
-        <FormControl>
+    <Grid style={{ marginTop: "20px" }}>
+      <Form onSubmit={handleSubmit}>
+        <FormControl sx={{ width: "85%" }}>
           <InputLabel htmlFor="book-input">Add a book</InputLabel>
           <OutlinedInput
             disabled={!userId}
-            id="book"
+            id="book-input"
             type="text"
             value={book}
             required
@@ -60,15 +65,15 @@ function BookForm({ userId }) {
         <Button
           variant="secondary"
           disabled={!userId}
-          style={{ marginLeft: "5px" }}
+          style={{ marginLeft: "5px", width: "15%" }}
           type="submit"
         >
           Add
         </Button>
-      </form>
+      </Form>
       {addBookMutation.error && <p>Error: {addBookMutation.error}</p>}
       {addBookMutation.isLoading && <p>Adding Todo...</p>}
-    </div>
+    </Grid>
   );
 }
 

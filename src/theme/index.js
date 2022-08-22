@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { deepmerge } from "@mui/utils";
 
 const FONT_FAMILY = " 'Merriweather', 'serif'";
 
@@ -70,4 +71,15 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+const customTheme = deepmerge(theme, {
+  typography: {
+    h1: {
+      fontSize: "1.5rem",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "3em",
+      },
+    },
+  },
+});
+
+export default customTheme;

@@ -16,12 +16,11 @@ function Users({ handleSelectChange }) {
   return (
     <Grid>
       <FormControl fullWidth>
-        <InputLabel id="user-select">Users</InputLabel>
+        <InputLabel id="friend-select">Friends</InputLabel>
         <Select
-          labelId="user-select"
-          id="demo-simple-select"
+          labelId="friend-select"
           defaultValue=""
-          label="Users"
+          label="Friends"
           onChange={handleSelectChange}
         >
           {data.map((user) => (
