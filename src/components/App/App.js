@@ -45,7 +45,9 @@ function App() {
 
   return (
     <AppContainer container>
-      <Button onClick={handleModalOpen}>Add User</Button>
+      <Button variant="contained" onClick={handleModalOpen}>
+        Add User
+      </Button>
       <Typography sx={{ padding: "20px 0" }} variant="h1">
         Library App
       </Typography>

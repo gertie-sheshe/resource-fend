@@ -16,13 +16,13 @@ function Users({ handleSelectChange }) {
   return (
     <Grid>
       <FormControl fullWidth>
-        <InputLabel id="user-select">Age</InputLabel>
+        <InputLabel id="user-select">Users</InputLabel>
         <Select
           sx={{ width: "500px" }}
           labelId="user-select"
           id="demo-simple-select"
           defaultValue=""
-          label="Age"
+          label="Users"
           onChange={handleSelectChange}
         >
           {data.map((user) => (

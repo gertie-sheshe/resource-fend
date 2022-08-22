@@ -57,7 +57,12 @@ function BookForm({ userId }) {
             onChange={handleOnChange}
           />
         </FormControl>
-        <Button disabled={!userId} style={{ marginLeft: "5px" }} type="submit">
+        <Button
+          variant="secondary"
+          disabled={!userId}
+          style={{ marginLeft: "5px" }}
+          type="submit"
+        >
           Add
         </Button>
       </form>
