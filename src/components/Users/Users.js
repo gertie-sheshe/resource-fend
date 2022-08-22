@@ -18,7 +18,6 @@ function Users({ handleSelectChange }) {
       <FormControl fullWidth>
         <InputLabel id="user-select">Users</InputLabel>
         <Select
-          sx={{ width: "500px" }}
           labelId="user-select"
           id="demo-simple-select"
           defaultValue=""

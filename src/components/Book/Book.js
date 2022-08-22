@@ -6,16 +6,11 @@ import {
   ListItemText,
   Checkbox,
   IconButton,
-  Dialog,
-  Button,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { useMutation, useQueryClient } from "react-query";
 import { updateBook } from "../../utils/api";
+import BookDialog from "./BookDialog";
 
 function Book({ book }) {
   const [isChecked, setIsChecked] = useState(book.returned);
@@ -67,24 +62,16 @@ function Book({ book }) {
         </IconButton>
       }
     >
-      <ListItemButton onClick={handleOnChange}>
+      <ListItemButton sx={{ paddingLeft: 0 }} onClick={handleOnChange}>
         <ListItemIcon>
-          <Checkbox checked={isChecked} />
+          <Checkbox
+            sx={{ "&.Mui-checked": { color: "palette.primary.main" } }}
+            checked={isChecked}
+          />
         </ListItemIcon>
         <ListItemText id={book.id} primary={book.title} />
       </ListItemButton>
-      <Dialog open={open} onClose={handleModalOpen}>
-        <DialogTitle>Delete Book</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            {`Are you sure you want to delete ${book.title}?`}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleModalOpen}>Cancel</Button>
-          <Button onClick={handleModalOpen}>Delete</Button>
-        </DialogActions>
-      </Dialog>
+      <BookDialog open={open} handleModalOpen={handleModalOpen} book={book} />
     </ListItem>
   );
 }

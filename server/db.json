@@ -30,7 +30,7 @@
       "userId": 1,
       "id": 1,
       "title": "delectus aut autem",
-      "returned": false,
+      "returned": true,
       "completed": true
     },
     {
@@ -68,7 +68,7 @@
       "userId": 3,
       "id": 7,
       "title": "illo expedita consequatur quia in",
-      "returned": false
+      "returned": true
     },
     {
       "userId": 4,

@@ -1,7 +1,16 @@
 import { createTheme } from "@mui/material";
-import { deepmerge } from "@mui/utils";
 
 const FONT_FAMILY = " 'Merriweather', 'serif'";
+
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 768,
+    md: 1152,
+    lg: 1440,
+    xl: 1920,
+  },
+};
 
 const palette = {
   primary: {
@@ -11,6 +20,17 @@ const palette = {
 };
 
 const theme = createTheme({
+  breakpoints,
+  palette,
+  contentWidths: {
+    values: {
+      sm: 728,
+      md: 1024,
+      lg: 1144,
+      xl: 1144,
+    },
+    unit: "px",
+  },
   typography: {
     fontFamily: FONT_FAMILY,
     h1: {
@@ -49,22 +69,5 @@ const theme = createTheme({
     },
   },
 });
-
-// const { typography, palette, overrides } = theme;
-// const { pxToRem } = typography;
-
-// deepmerge(theme.typography, {
-//   h1: {
-//     fontSize: "3rem",
-//     fontWeight: 700,
-//     lineHeight: 1.167,
-//     letterSpacing: "-0.01562em",
-//     fontFamily: FONT_FAMILY,
-//   },
-// });
-
-// deepmerge(overrides, {});
-
-console.log("THEME", theme);
 
 export default theme;

@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { getUserBooks } from "../../utils/api";
-import {
-  Typography,
-  Grid,
-  Button,
-  Dialog,
-  TextField,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  DialogContentText,
-} from "@mui/material";
+import { Typography, Grid, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import Users from "../Users";
 import BooksList from "../BooksList";
 import BookForm from "../BookForm";
+import Section from "../../layout/Section";
+import UserDialog from "./UserDialog";
 import "./App.css";
 
 const AppContainer = styled(Grid)({
   flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  paddingTop: "50px",
+  paddingTop: "10px",
 });
+
+const ContentContainer = styled("div")(
+  ({ theme: { breakpoints, typography } }) => ({
+    width: "100%",
+    [breakpoints.up("md")]: {
+      width: "60%",
+    },
+    [breakpoints.up("lg")]: {
+      width: "40%",
+    },
+  })
+);
 
 function App() {
   const [userId, setUserId] = useState(null); // move to context?
@@ -44,40 +45,41 @@ function App() {
   };
 
   return (
-    <AppContainer container>
-      <Button variant="contained" onClick={handleModalOpen}>
-        Add User
-      </Button>
-      <Typography sx={{ padding: "20px 0" }} variant="h1">
-        Library App
-      </Typography>
+    <Section>
       <main>
-        <Users handleSelectChange={handleSelectChange} />
-        <BooksList {...books} />
-        <BookForm userId={userId} />
-        <Dialog open={open} onClose={handleModalOpen}>
-          <DialogTitle>Add User</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To add a user, please enter their name here.
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Add User"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleModalOpen}>Cancel</Button>
-            <Button onClick={handleModalOpen}>Add</Button>
-          </DialogActions>
-        </Dialog>
+        <AppContainer container>
+          <Grid
+            item
+            sx={{
+              display: "flex",
+              justifyContent: { xs: "center", sm: "flex-end" },
+            }}
+          >
+            <Button variant="contained" onClick={handleModalOpen}>
+              Add User
+            </Button>
+          </Grid>
+          <Grid
+            item
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography sx={{ padding: "20px 0" }} variant="h1">
+              Library App
+            </Typography>
+            <ContentContainer>
+              <Users handleSelectChange={handleSelectChange} />
+              <BooksList {...books} />
+              <BookForm userId={userId} />
+              <UserDialog open={open} handleModalOpen={handleModalOpen} />
+            </ContentContainer>
+          </Grid>
+        </AppContainer>
       </main>
-    </AppContainer>
+    </Section>
   );
 }
 
