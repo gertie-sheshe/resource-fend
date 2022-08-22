@@ -42,3 +42,11 @@ export const createBook = (data, userId) => {
     body: JSON.stringify(data),
   });
 };
+
+export const createUser = (data) => {
+  return apiRequest(`${API_URL}/users`, {
+    method: "POST",
+    headers: HEADERS,
+    body: JSON.stringify(data),
+  });
+};
