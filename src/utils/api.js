@@ -35,6 +35,13 @@ export const updateBook = (data, bookId) => {
   });
 };
 
+export const deleteBook = (bookId) => {
+  return apiRequest(`${API_URL}/books/${bookId}`, {
+    method: "DELETE",
+    headers: HEADERS,
+  });
+};
+
 export const createBook = (data, userId) => {
   return apiRequest(`${API_URL}/users/${userId}/books`, {
     method: "POST",
